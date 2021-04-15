@@ -43,30 +43,30 @@ export default {
 @import '../assets/Font/Font';
 
 .container {
-
+  padding: 4px;
 
   .card {
-    width: 95%;
+    width: 100%;
     margin: 1vh auto;
     border-radius: 6px;
     text-align: center;
     display: flex;
     justify-content: space-between;
     //box-shadow: 0 5px 10px rgba(31, 32, 38, 0.05), 0 15px 40px rgba(103, 108, 125, 0.2);
-    padding: 2px;
-    background: #E1E6F3;
+    padding: 4px;
+
 
     .icon {
-  img{
-    padding-top: 15px;
-  }
+      img {
+        padding-top: 15px;
+      }
     }
 
     .con {
       width: 80%;
       border-radius: 5px;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      background: white;
+
       font-weight: bolder;
       text-align: start;
       padding: 10px;
@@ -74,7 +74,7 @@ export default {
       justify-content: space-between;
 
       .text {
-        color: $background_color;
+        color: $secondary_color;
       }
 
       .details {
@@ -82,6 +82,7 @@ export default {
         width: 50px;
         text-align: center;
         padding: 5px;
+        border-radius: 2rem;
       }
 
     }

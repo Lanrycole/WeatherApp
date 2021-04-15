@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div class="widget">
-      <!--      <section class="main_section" :style="[city.temp <15 ? {'background': 'url(' + winter + ') center center/cover no-repeat'} : {'background': 'url(' + summer + ') center center/cover no-repeat'}  ]">-->
       <section class="main_section" :style="{'background': 'url(' + bg_img + ') center center/cover no-repeat'}">
 
         <h1>Vue Weather</h1>
@@ -30,26 +29,26 @@
           <img src="https://img.icons8.com/fluent-systems-filled/22/000000/search.png" @click="getWeather"/>
         </div>
         <div class="weather_details" v-show="weather.length>0">
-          <weather :imgs="wind_icon" details1="Wind Speed" :details2="city.wind_speed"/>
-          <weather :imgs="pressure_icon" details1="Pressure" :details2="city.pressure"/>
-          <weather :imgs="humidity_icon" details1="Humidity" :details2="city.humidity"/>
+          <weatherCard :imgs="wind_icon" details1="Wind Speed" :details2="city.wind_speed"/>
+          <weatherCard :imgs="pressure_icon" details1="Pressure" :details2="city.pressure"/>
+          <weatherCard :imgs="humidity_icon" details1="Humidity" :details2="city.humidity"/>
         </div>
         <div class="forecast" v-show="weather.length>0">
           <h4> 3 days forecast</h4>
-          <forecast :icon="forecast_data1.icon" :day="forecast_data1.forecast_day"
+          <forecastCard :icon="forecast_data1.icon" :day="forecast_data1.forecast_day"
                     :date="forecast_data1.forecast_day"
                     :condition="forecast_data1.condition"
                     :max_temp="forecast_data1.max_temp"
                     :min_temp="forecast_data1.min_temp"/>
 
 
-          <forecast :icon="forecast_data2.icon" :day="forecast_data2.forecast_day"
+          <forecastCard :icon="forecast_data2.icon" :day="forecast_data2.forecast_day"
                     :date="forecast_data2.forecast_day"
                     :condition="forecast_data2.condition"
                     :max_temp="forecast_data2.max_temp"
                     :min_temp="forecast_data2.min_temp"/>
 
-          <forecast :icon="forecast_data3.icon" :day="forecast_data3.forecast_day"
+          <forecastCard :icon="forecast_data3.icon" :day="forecast_data3.forecast_day"
                     :date="forecast_data3.forecast_day"
                     :condition="forecast_data3.condition"
                     :max_temp="forecast_data3.max_temp"
@@ -63,13 +62,13 @@
 
 
 <script>
-import weather from "@/components/weatherCard";
-import forecast from "@/components/forecast";
+import weatherCard from "@/components/WeatherCard";
+import forecastCard from "@/components/ForecastCard";
 
 export default {
   components: {
-    weather,
-    forecast
+    weatherCard,
+    forecastCard
   },
   name: "App",
   data() {
@@ -145,7 +144,6 @@ export default {
 
     getWeather: async function () {
       if (this.user_search !== "") {
-        // this.url = 'https://api.codetabs.com/v1/proxy?quest=http://api.openweathermap.org/data/2.5/weather?q=' + this.user_search + '&appid=e9d9bf1bcc413384014325aa860c6171&units=metric'
         this.url = 'https://api.weatherapi.com/v1/forecast.json?key=42f8f2699bb64f0c8cb233647211902&q=' + this.user_search + '&days=3'
 
         this.resp = await fetch(this.url);
@@ -207,12 +205,12 @@ export default {
     /**
      * getDate: function that gets current data and time.
      */
-  changeBG(){
-    if(this.city.temp<15){
-      this.bg_img = this.winter
-    }else{
-      this.bg_img= this.summer;
-    }
+    changeBG() {
+      if (this.city.temp < 10) {
+        this.bg_img = this.winter
+      } else {
+        this.bg_img = this.summer;
+      }
     }
 
   },
@@ -222,12 +220,9 @@ export default {
      * getFlag: function that dynamically switch flags based on the country
      * @returns {string}
      */
-
   }
 }
 </script>
-
-
 <style lang="scss">
 @import './assets/Colors/colors';
 @import './assets/Font/Font';
@@ -236,6 +231,7 @@ export default {
   padding: 0;
   margin: 0;
   font-family: $text_font;
+
 }
 
 #app {
@@ -249,9 +245,10 @@ export default {
     display: flex;
     margin: 10vh auto;
     text-align: center;
-    width: 60%;
+    width: 70%;
     background: $background_color;
-    height: 85vh;
+
+    height: 100vh;
 
     .main_section {
       //background: url('./assets/home.jpg') no-repeat center;
@@ -260,7 +257,7 @@ export default {
       grid-column-end: 2;
       width: 60%;
       position: relative;
-      height: 85vh;
+
 
       h1 {
         color: white;
@@ -343,7 +340,7 @@ export default {
 
     #info_section {
       width: 40%;
-      height: 90vh;
+
       position: relative;
 
       .search {
@@ -409,8 +406,8 @@ export default {
 
       .forecast {
         width: 100%;
-        position: absolute;
-        bottom: 60px;
+        //position: absolute;
+
 
         h4 {
           text-align: start;
