@@ -2,7 +2,7 @@
   <div class="container">
     <div class="forecaset_info">
 
-      <p> {{ moment(day).format('dddd') }}<br>{{ moment(date).format("MMM Do YY") }}</p>
+      <p>{{ moment(day).format('dddd') }}<br>{{ moment(date).format("MMM Do YY") }}</p>
       <p><img :src="icon" width="24px"/><br>{{ condition }}</p>
       <p>{{ max_temp }}<br><span class="feels">Feels Like {{ min_temp }}</span></p>
     </div>
@@ -55,7 +55,7 @@ margin: 10px;
   background:$background_color;
 
   p {
-    font-weight: 400;
+    font-weight: 100;
     margin: 1vh auto;
 
     .feels {

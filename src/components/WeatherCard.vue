@@ -78,7 +78,7 @@ export default {
       }
 
       .details {
-        background: $highlight_color;
+        color: $highlight_color;
         width: 50px;
         text-align: center;
         padding: 5px;

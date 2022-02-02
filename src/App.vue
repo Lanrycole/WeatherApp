@@ -7,9 +7,8 @@
         <div class="top">
           <h2 v-show="weather.length===0 ">Plan your day ahead.</h2>
           <div class="name" v-show="weather.length>0 ">
-            <p class="city_name"> {{ city.name }}</p>
-            <p class="country">{{ city.country }}</p>
-            <p class="date">{{ moment(city.curr_date).format("MMM Do YY") }}</p>
+            <p class="city_name"> {{ city.name }}<span class="country_details">,{{ city.country }}</span></p>
+            <p class="date">{{ moment(city.curr_date).format("MMM Do 20YY") }}</p>
           </div>
         </div>
         <div class="bottom" v-show="weather.length>0">
@@ -36,23 +35,23 @@
         <div class="forecast" v-show="weather.length>0">
           <h4> 3 days forecast</h4>
           <forecastCard :icon="forecast_data1.icon" :day="forecast_data1.forecast_day"
-                    :date="forecast_data1.forecast_day"
-                    :condition="forecast_data1.condition"
-                    :max_temp="forecast_data1.max_temp"
-                    :min_temp="forecast_data1.min_temp"/>
+                        :date="forecast_data1.forecast_day"
+                        :condition="forecast_data1.condition"
+                        :max_temp="forecast_data1.max_temp"
+                        :min_temp="forecast_data1.min_temp"/>
 
 
           <forecastCard :icon="forecast_data2.icon" :day="forecast_data2.forecast_day"
-                    :date="forecast_data2.forecast_day"
-                    :condition="forecast_data2.condition"
-                    :max_temp="forecast_data2.max_temp"
-                    :min_temp="forecast_data2.min_temp"/>
+                        :date="forecast_data2.forecast_day"
+                        :condition="forecast_data2.condition"
+                        :max_temp="forecast_data2.max_temp"
+                        :min_temp="forecast_data2.min_temp"/>
 
           <forecastCard :icon="forecast_data3.icon" :day="forecast_data3.forecast_day"
-                    :date="forecast_data3.forecast_day"
-                    :condition="forecast_data3.condition"
-                    :max_temp="forecast_data3.max_temp"
-                    :min_temp="forecast_data3.min_temp"/>
+                        :date="forecast_data3.forecast_day"
+                        :condition="forecast_data3.condition"
+                        :max_temp="forecast_data3.max_temp"
+                        :min_temp="forecast_data3.min_temp"/>
         </div>
 
       </section>
@@ -64,6 +63,7 @@
 <script>
 import weatherCard from "@/components/WeatherCard";
 import forecastCard from "@/components/ForecastCard";
+
 
 export default {
   components: {
@@ -231,7 +231,7 @@ export default {
   padding: 0;
   margin: 0;
   font-family: $text_font;
-
+  background: $background_color;
 }
 
 #app {
@@ -243,12 +243,12 @@ export default {
   .widget {
     border: 1px solid $background_color;
     display: flex;
-    margin: 10vh auto;
+    margin: 5vh auto;
     text-align: center;
     width: 70%;
     background: $background_color;
 
-    height: 100vh;
+    height: 90vh;
 
     .main_section {
       //background: url('./assets/home.jpg') no-repeat center;
@@ -263,6 +263,8 @@ export default {
         color: white;
         padding: 10px;
         text-align: start;
+
+        font-size:20px;
         font-weight: normal;
       }
 
@@ -281,21 +283,23 @@ export default {
             text-shadow: 0px 2px 2px rgb(35, 194, 137);
           }
 
+
           color: $text_color;
 
-          .country {
-            font-size: 16px;
+          .country_details {
+            font-size: 25px;
             text-shadow: none;
-
+            margin-left: 5px;
           }
 
         }
 
         h2 {
-          margin-top: 2vh;
+          margin-top: 10vh;
           color: $text_color;
           opacity: 0.7;
           font-weight: normal;
+          padding:20px;
         }
       }
 
@@ -322,7 +326,7 @@ export default {
           p {
             font-weight: bolder;
             color: $text_color;
-            font-size: 120px;
+            font-size: 70px;
             padding: 0;
             margin: 0;
           }
